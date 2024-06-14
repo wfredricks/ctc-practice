@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react';
+import './home.css';
 
 async function handlePlay(board) {
   for (let i = 0; i < 9; i++) {
@@ -21,9 +22,12 @@ async function handlePlay(board) {
 };
 
 function Square({ value, onSquareClick }) {
+  const valStyles = value == "X" ? 'square-teal' : 'square-peach';
   return (
     <button className="square" onClick={onSquareClick}>
-      {value}
+      <p className={valStyles}>
+        {value}
+      </p>
     </button>
   );
 }
@@ -53,7 +57,7 @@ function Board({ xIsNext, squares, onPlay }) {
 
   return (
     <>
-      <div className="status">{status}</div>
+      <div className="board-status">{status}</div>
       <div className="board-row">
         <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
         <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
@@ -104,14 +108,17 @@ export default function Game() {
   });
 
   return (
-    <div className="game">
-      <div className="game-board">
-        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+    <>
+    <h1 className="game-title">Welcome to the Tic Tac Toe Games</h1>
+      <div className="game-container">
+        <div className="game-board">
+          <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+        </div>
+        <div className="game-info">
+          <ol>{moves}</ol>
+        </div>
       </div>
-      <div className="game-info">
-        <ol>{moves}</ol>
-      </div>
-    </div>
+    </>
   );
 }
 
