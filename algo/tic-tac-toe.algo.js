@@ -33,7 +33,7 @@ const minimax = (board, depth, isMaximizing) => {
     if (winner === 'draw') return 0;
 
     if (isMaximizing) {
-        let bestScore = -Infinity;
+        let bestScore = -100;
         for (let i = 0; i < 3; i++) {
             for (let j = 0; j < 3; j++) {
                 if (board[i][j] === '') {
@@ -46,7 +46,7 @@ const minimax = (board, depth, isMaximizing) => {
         }
         return bestScore;
     } else {
-        let worstScore = Infinity;
+        let worstScore = 100;
         for (let i = 0; i < 3; i++) {
             for (let j = 0; j < 3; j++) {
                 if (board[i][j] === '') {
@@ -63,7 +63,7 @@ const minimax = (board, depth, isMaximizing) => {
 
 const findBestMove = (board, player) => {
     let bestMove = null;
-    let bestScore = -Infinity;
+    let bestScore = -20;
 
     for (let i = 0; i < 3; i++) {
         for (let j = 0; j < 3; j++) {
@@ -110,7 +110,6 @@ export function TicTacToe(board) {
     }
 
     board.status = checkWin(matrix);
-    console.log(board)
     return board;
 }
 
