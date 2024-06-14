@@ -109,7 +109,8 @@ export function TicTacToe(board) {
         }
     }
 
-    board.win = checkWin(matrix);
+    board.status = checkWin(matrix);
+    console.log(board)
     return board;
 }
 
