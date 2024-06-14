@@ -1,8 +1,15 @@
-// this.board = [
+// { userid: '',
+//   status: '',
+//   matrix: [
 //     [null, null, null],
 //     [null, null, null],
 //     [null, null, null]
 //   ];
+// }
+
+export default function main(board) {
+    return TicTacToe(board);
+}
 
 export function TicTacToe(board) {
   const matrix = board?.matrix;
@@ -10,7 +17,7 @@ export function TicTacToe(board) {
     throw new Error('Matrix is required');
   }
 
-  board.win = checkWin(matrix);
+  board.status = checkWin(matrix);
   return board;
 }
 
@@ -21,18 +28,18 @@ let gameState = [
 ];
 const checkWin = (board) => {
     const lines = [
-        //Rows
+        // Rows
         [board[0][0], board[0][1], board[0][2]],
         [board[1][0], board[1][1], board[1][2]],
         [board[2][0], board[2][1], board[2][2]],
-        //Columns
+        // Columns
         [board[0][0], board[1][0], board[2][0]],
         [board[0][1], board[1][1], board[2][1]],
         [board[0][2], board[1][2], board[2][2]],
-        //Diagonals
-        [board[0][2], board[1][1], board[2][0]],
-        [board[0][0], board[0][1], board[0][2]],
-    ]
+        // Diagonals
+        [board[0][0], board[1][1], board[2][2]],
+        [board[0][2], board[1][1], board[2][0]]
+    ];
     
     for (const line of lines) {
         if (line[0] && line[0] === line[1] && line[0] === line[2]) {
@@ -78,3 +85,127 @@ const makeComputerMove = (board) => {
       }
       return { board, row: null, col: null };
 }
+
+/* possible rewrite to add logic for computer making the best move
+const checkWin = (board) => {
+    const lines = [
+        // Rows
+        [board[0][0], board[0][1], board[0][2]],
+        [board[1][0], board[1][1], board[1][2]],
+        [board[2][0], board[2][1], board[2][2]],
+        // Columns
+        [board[0][0], board[1][0], board[2][0]],
+        [board[0][1], board[1][1], board[2][1]],
+        [board[0][2], board[1][2], board[2][2]],
+        // Diagonals
+        [board[0][0], board[1][1], board[2][2]],
+        [board[0][2], board[1][1], board[2][0]]
+    ];
+    
+    for (const line of lines) {
+        if (line[0] && line[0] === line[1] && line[0] === line[2]) {
+            return line[0];
+        }
+    }
+
+    if (board.flat().every(cell => cell)) {
+        return 'draw';
+    }
+
+    return '';
+};
+
+const minimax = (board, depth, isMaximizing) => {
+    const winner = checkWin(board);
+    if (winner === 'X') return -10 + depth;
+    if (winner === 'O') return 10 - depth;
+    if (winner === 'draw') return 0;
+
+    if (isMaximizing) {
+        let bestScore = -Infinity;
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                if (board[i][j] === '') {
+                    board[i][j] = 'O';
+                    const score = minimax(board, depth + 1, false);
+                    board[i][j] = '';
+                    bestScore = Math.max(score, bestScore);
+                }
+            }
+        }
+        return bestScore;
+    } else {
+        let worstScore = Infinity;
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                if (board[i][j] === '') {
+                    board[i][j] = 'X';
+                    const score = minimax(board, depth + 1, true);
+                    board[i][j] = '';
+                    worstScore = Math.min(score, worstScore);
+                }
+            }
+        }
+        return worstScore;
+    }
+};
+
+const findBestMove = (board) => {
+    let bestMove = null;
+    let bestScore = -Infinity;
+
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            if (board[i][j] === '') {
+                board[i][j] = 'O';
+                const moveScore = minimax(board, 0, false);
+                board[i][j] = '';
+                if (moveScore > bestScore) {
+                    bestScore = moveScore;
+                    bestMove = { row: i, col: j };
+                }
+            }
+        }
+    }
+    return bestMove;
+};
+
+const makeMove = (board, player, row, col) => {
+    if (board[row][col] !== '') {
+        return { error: 'Cell already occupied' };
+    }
+
+    board[row][col] = player;
+    const winner = checkWin(board);
+
+    if (winner) {
+        return { board, winner };
+    }
+
+    // If no winner, make computer move using Minimax
+    const bestMove = findBestMove(board);
+    if (bestMove) {
+        board[bestMove.row][bestMove.col] = 'O';
+    }
+    const newWinner = checkWin(board);
+
+    return { board, winner: newWinner, computerMove: bestMove };
+};
+
+export function TicTacToe(board) {
+    const matrix = board?.matrix;
+    if (!matrix) {
+        throw new Error('Matrix is required');
+    }
+
+    board.win = checkWin(matrix);
+    return board;
+}
+
+let gameState = [
+    ['', '', ''],
+    ['', '', ''],
+    ['', '', '']
+];
+
+ */
