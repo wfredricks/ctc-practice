@@ -44,5 +44,9 @@ const checkWin = (board) => {
         return 'draw';
     }
 
-    return null;
+    return '';
 };
+
+const makeMove = (board, userId, gameEnded) => {
+
+}
