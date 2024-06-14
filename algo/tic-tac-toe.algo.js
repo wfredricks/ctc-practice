@@ -26,6 +26,10 @@ export const checkWin = (board) => {
     return '';
 };
 
+const randomDepth = () => {
+    return Math.floor(Math.random() * 9);
+};
+
 const minimax = (board, depth, isMaximizing) => {
     const winner = checkWin(board);
     if (winner === 'X') return -10 + depth;
@@ -38,7 +42,7 @@ const minimax = (board, depth, isMaximizing) => {
             for (let j = 0; j < 3; j++) {
                 if (board[i][j] === '') {
                     board[i][j] = 'O';
-                    const score = minimax(board, depth + 1, false);
+                    const score = minimax(board, depth + randomDepth(), false);
                     board[i][j] = '';
                     bestScore = Math.max(score, bestScore);
                 }
@@ -51,7 +55,7 @@ const minimax = (board, depth, isMaximizing) => {
             for (let j = 0; j < 3; j++) {
                 if (board[i][j] === '') {
                     board[i][j] = 'X';
-                    const score = minimax(board, depth + 1, true);
+                    const score = minimax(board, depth + randomDepth(), true);
                     board[i][j] = '';
                     worstScore = Math.min(score, worstScore);
                 }
