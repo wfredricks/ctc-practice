@@ -1,0 +1,17 @@
+{
+  "name": "ctc-practice",
+  "version": "1.0.0",
+  "description": "This is a repository for Credence Tech Challenge practice purposes",
+  "main": "jest.config.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.24.7",
+    "@babel/preset-env": "^7.24.7",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0"
+  }
+}

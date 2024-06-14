@@ -7,11 +7,11 @@
 //   ];
 // }
 
-export default function main(board) {
+function main(board) {
     return TicTacToe(board);
 }
 
-export function TicTacToe(board) {
+function TicTacToe(board) {
   const matrix = board?.matrix;
   if (!matrix) {
     throw new Error('Matrix is required');
@@ -55,7 +55,7 @@ const checkWin = (board) => {
 };
 
 //I just copied what I found from the internet we will likely need to refactor.
-const makeMove = (board, userId, row, col) => {
+export const makeMove = (board, player, row, col) => {
     if (board[row][col] !== '') {
         return { error: 'Cell already occupied' };
     }
@@ -86,7 +86,7 @@ const makeComputerMove = (board) => {
       return { board, row: null, col: null };
 }
 
-/* possible rewrite to add logic for computer making the best move
+/* possible rewrite to add logic for computer making the best move and allowing the computer to make the first move
 const checkWin = (board) => {
     const lines = [
         // Rows
@@ -196,6 +196,14 @@ export function TicTacToe(board) {
     const matrix = board?.matrix;
     if (!matrix) {
         throw new Error('Matrix is required');
+    }
+
+    if (matrix.flat().every(cell => cell === '')) {
+        // Make initial computer move if board is empty
+        const bestMove = findBestMove(matrix);
+        if (bestMove) {
+            matrix[bestMove.row][bestMove.col] = 'O';
+        }
     }
 
     board.win = checkWin(matrix);
