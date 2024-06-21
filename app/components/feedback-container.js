@@ -26,6 +26,7 @@ export function FeedbackContainer() {
         <div style={{"display":"inline-block", "height":"100%", "background-color": "aquamarine"}}>...</div>
         {showFeedback && (
         <div id="pastComments">
+          <SubmitFeedback />
           <div>commment</div>
           <div>comments</div>
         </div>
