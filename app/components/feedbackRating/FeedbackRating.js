@@ -1,12 +1,12 @@
 'use client'
-import React, { useState } from 'react';
+import React from 'react';
 import Rating from '@mui/material/Rating';
 
-function Feedback() {
-    const [rating, setRating] = useState("");
+function FeedbackRating({ rating }) {
+    // TODO JLW - add validation check to make sure it's not null
     return (
         <Rating name="feedback-rating" value={rating} onChange={(event, newValue) => { setRating(newValue); }} />
     )
 }
 
-export default Feedback
+export default FeedbackRating
