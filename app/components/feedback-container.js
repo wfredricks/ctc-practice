@@ -1,10 +1,12 @@
 "use client";
 
-import React from 'react'
+import React, { useState } from 'react'
 import SubmitFeedback from './submitFeedback/submitFeedback';
 
 export function FeedbackContainer() {
     const [showFeedback, setShowFeedback] = React.useState(false);
+    const [feedbackRating, setRating] = useState('');
+    const [feedbackMessage, setMessage] = useState('');
 
     const handleFeedback = async ({ rating, message }) => {
         const pageUrl = window.location.href;
@@ -15,6 +17,14 @@ export function FeedbackContainer() {
             url: pageUrl,
         };
 
+        if (feedbackRating !== rating) {
+            setRating(rating);
+        }
+
+        if (feedbackMessage !== message) {
+            setMessage(message);
+        }
+
         await fetch("/api/feedback", body);
     };
 
@@ -22,9 +32,8 @@ export function FeedbackContainer() {
 
     return (
         <>
-            <div>
-                <SubmitFeedback rating={rating} comment={message} />
-            </div>
+            <SubmitFeedback rating={feedbackRating} comment={feedbackMessage} />
+
             <div onClick={() => setShowFeedback(!showFeedback)} style={{ "position": "fixed", "right": "0px", "top": "0px", "bottom": "0px", "maxWidth": "33vw" }}>
                 <div>...</div>
                 {showFeedback && (

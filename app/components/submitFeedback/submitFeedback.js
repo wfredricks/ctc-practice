@@ -1,6 +1,6 @@
 import React from 'react'
-import Comment from '../components/feedbackComment/comment'
-import FeedbackRating from '../components/feedbackRating/FeedbackRating'
+import Comment from '../feedbackComment/comment';
+import FeedbackRating from '../feedbackRating/FeedbackRating';
 
 const SubmitFeedback = ({ rating, comment }) => {
     // const [rating, setRating] = useState("");
