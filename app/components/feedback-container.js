@@ -21,15 +21,15 @@ export function FeedbackContainer() {
 
   return (
     <>
-      <button onClick={() => setShowFeedback(!showFeedback)}>
-        Add Comment
-      </button>
-      {showFeedback && (
+      <div onClick={() => setShowFeedback(!showFeedback)} style={{"position":"fixed", "right":"0px", "top":"0px", "bottom":"0px", "maxWidth":"33vw"}}>
+        <div>...</div>
+        {showFeedback && (
         <>
           <div>commment</div>
           <div>comments</div>
         </>
       )}
+      </div>
     </>
   );
 }
