@@ -1,12 +1,10 @@
 "use client";
 import React, { useState } from "react";
 
-const Comment = () => {
-  const [comment, setComment] = useState("");
+const Comment = ({ comment }) => {
   const [validatedComment, setValidComment] = useState("");
   const [error, setError] = useState("");
 
-  // TODO JLW - add prop for parent to use for state management
   const validateComment = async () => {
     // Check if the comment is empty
     if (!comment) {
