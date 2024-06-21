@@ -33,4 +33,4 @@ const SubmitFeedback = ({ handleFeedback }) => {
   );
 };
 
-export default SubmitFeedback
+export default SubmitFeedback;
