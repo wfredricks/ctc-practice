@@ -1,8 +1,9 @@
 import React from 'react'
+import { FeedbackContainer } from '../components/feedback-container'
 
 function Feedback() {
   return (
-    <div>Feedback page</div>
+    <div><FeedbackContainer /></div>
   )
 }
 
