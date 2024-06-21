@@ -1,7 +1,7 @@
 "use client";
-
 import React from "react";
 import SubmitFeedback from "./submitFeedback/submitFeedback";
+import './feedback-container.css';
 
 export function FeedbackContainer() {
   const [showFeedback, setShowFeedback] = React.useState(false);
