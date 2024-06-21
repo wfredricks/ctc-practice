@@ -30,9 +30,9 @@ const Comment = () => {
             onChange={(e) => setComment(e.target.value.trimStart())}
             placeholder="Enter feedback here"
           ></textarea>
-          <button className="usa-button" onClick={validateComment}>
+          {/* <button className="usa-button" onClick={validateComment}>
             Submit
-          </button>
+          </button> */}
           {validatedComment && (
             <div class="usa-alert usa-alert--success">
               <div class="usa-alert__body">
