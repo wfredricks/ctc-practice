@@ -9,7 +9,6 @@ export function FeedbackContainer() {
         const body = {
             rating: rating,
             message: message,
-            date: new Date().toISOString(),
             userid: '1234',
             url: pageUrl
         }
