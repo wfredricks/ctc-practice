@@ -1,0 +1,81 @@
+import json
+from datetime import datetime
+import boto3
+dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
+table = dynamodb.Table("gsa_challenge_table_20240621")
+def convert_float(x):
+    try:
+        return float(x)
+    except:
+        return 0
+def getFeedbacks(url):
+    response = table.get_item(Key={"url": url})
+    item = response.get("Item")
+    if item is None:
+        return {
+        'statusCode': 400,
+        'body': json.dumps({"message": "url doesn't exist"})
+    }
+    obj = [{"message":x["message"], "rating":convert_float(x['rating']), "date":x['date']} for x in item['feedback']]
+    print(obj)
+    return {
+        'statusCode': 200,
+        'body': json.dumps(obj)
+    }
+def storeFeedback(event):
+    try:
+        body = json.loads(event['body'])
+        url = body.get('url')
+        userid = body.get('userid')
+        message = body.get("message")
+        rating = body.get("rating")
+        date = datetime.now().isoformat()
+        if url is None or userid is None or message is None or rating is None or url == "" or message == "":
+            return {
+                'statusCode': 400,
+                'body': "url, userid or message is not provided or empty"
+            }
+            
+        response = table.get_item(Key={"url": url})
+        item = response.get("Item", {"url":url, "feedback":[]})
+        item['feedback'].append({"message":message,"userid":userid, "rating":rating, "date":date})
+        table.put_item(Item=item)
+
+            
+       
+        
+        return {
+            'statusCode': 200,
+            'body': json.dumps({"message": "user feedback submitted success"})
+        }
+    except json.JSONDecodeError:
+        return {
+            'statusCode': 400,
+            'body': json.dumps({'message': 'Invalid JSON in request body'})
+        }
+    except Exception as e:
+        print(e)
+        return {
+            'statusCode': 400,
+            'body': json.dumps({'message': e})
+        }
+        
+        
+def lambda_handler(event, context):
+    # Log the received event for debugging purposes
+    print("Received event:", json.dumps(event))
+    
+    http_method = event['httpMethod']
+    
+    if http_method == 'GET':
+        url = "pageUrl"
+        url = event['queryStringParameters']['url']
+        print("url ", url)
+        return getFeedbacks(url)
+    elif http_method == 'POST':
+        return storeFeedback(event)
+    else:
+        return {
+            'statusCode': 405,
+            'body': json.dumps({'message': f'Method {http_method} not allowed'})
+        }

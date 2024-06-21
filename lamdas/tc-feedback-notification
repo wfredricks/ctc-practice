@@ -1,0 +1,29 @@
+import json
+import boto3
+
+eventbridge = boto3.client('events')
+
+def lambda_handler(event, context):
+    try:
+        print("event", json.dumps(event))
+        for record in event.get('Records', []):
+            if record.get('eventName') == 'INSERT':
+                new_image = record['dynamodb'].get('NewImage', {})
+                comment_event = {
+                    'Source': 'dynamodb.comment',
+                    'DetailType': 'NewComment',
+                    'Detail': json.dumps(new_image),
+                    'EventBusName': 'default'  # Change this if you're using a custom event bus
+                }
+                response = eventbridge.put_events(Entries=[comment_event])
+                print("EventBridge response", response)
+        return {
+            'statusCode': 200,
+            'body': json.dumps('Success')
+        }
+    except Exception as e:
+        print("Error processing event", e)
+        return {
+            'statusCode': 500,
+            'body': json.dumps(f"Error: {str(e)}")
+        }
