@@ -1,9 +1,13 @@
 import React from 'react'
+import Comment from '../feedbackComment/comment'
 
-function Feedback() {
+function Home() {
   return (
-    <div>Feedback page</div>
+    <>
+    <Comment/>
+    </>
+
   )
 }
 
-export default Feedback
+export default Home
