@@ -4,6 +4,7 @@ import SubmitFeedback from "./submitFeedback/submitFeedback";
 import "./feedback-container.css";
 
 export function FeedbackContainer() {
+  const [message, setMessage] = React.useState('');
   const [showFeedback, setShowFeedback] = React.useState(false);
 
   const handleFeedback = async ({ rating, comment }) => {
@@ -15,10 +16,13 @@ export function FeedbackContainer() {
       url: pageUrl,
     };
 
-    await fetch("/api/feedback", {
+    const response = await fetch("/api/feedback", {
       method: "post",
       body: JSON.stringify(body),
     });
+    const {data} = await response.json();
+    console.log("response", data.message);
+    setMessage(data.message);
   };
 
   return (
@@ -38,7 +42,7 @@ export function FeedbackContainer() {
         style={{
           display: "inline-block",
           height: "100%",
-          "background-color": "aquamarine",
+          "backgroundColor": "aquamarine",
         }}
       >
         &#8942;
@@ -46,7 +50,8 @@ export function FeedbackContainer() {
       {showFeedback && (
         <div id="pastComments">
           <SubmitFeedback handleFeedback={handleFeedback} />
-          <div>comments</div>
+          <div>{message}</div>
+          {/* <div>comments</div> */}
         </div>
       )}
     </div>
