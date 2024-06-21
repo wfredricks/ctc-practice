@@ -40,7 +40,7 @@ const SubmitFeedback = ({ rating, comment }) => {
         <>
             <Comment comment={comment} />
             <FeedbackRating rating={rating} />
-            <button button
+            <button
                 type="button"
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 onClick={submitForm} >
