@@ -16,7 +16,7 @@ const Comment = ({ comment, setComment }) => {
         <textarea
           className="usa-textarea"
           id="comment-input"
-          value={comment}
+          value={commen}
           onChange={handleFeedback}
           placeholder="Enter feedback here"
         ></textarea>
