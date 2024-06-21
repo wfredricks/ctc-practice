@@ -1,9 +1,15 @@
 import React from 'react'
 
-function Feedback() {
+import Comment from '../feedbackComment/comment'
+import Feedback from '../feedback/page'
+function Home() {
   return (
-    <div></div>
-  )
-}
+    <>
+    <Comment/>
+    <Feedback/>
+    </>
 
-export default Feedback
+  )
+
+}
+export default Home
