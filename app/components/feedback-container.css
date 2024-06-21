@@ -1,0 +1,5 @@
+#pastComments {
+    background-color: #DDD;
+    display: flex;
+    flex-direction: column;
+}

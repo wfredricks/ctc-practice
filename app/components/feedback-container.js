@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import './feedback-container.css';
 
 export function FeedbackContainer() {
   const [showFeedback, setShowFeedback] = React.useState(false);
@@ -21,13 +22,13 @@ export function FeedbackContainer() {
 
   return (
     <>
-      <div onClick={() => setShowFeedback(!showFeedback)} style={{"position":"fixed", "right":"0px", "top":"0px", "bottom":"0px", "maxWidth":"33vw"}}>
-        <div>...</div>
+      <div onClick={() => setShowFeedback(!showFeedback)} style={{"position":"fixed", "right":"0px", "top":"0px", "bottom":"0px", "maxWidth":"33vw", "display": "flex"}}>
+        <div style={{"display":"inline-block", "height":"100%", "background-color": "aquamarine"}}>...</div>
         {showFeedback && (
-        <>
+        <div id="pastComments">
           <div>commment</div>
           <div>comments</div>
-        </>
+        </div>
       )}
       </div>
     </>
