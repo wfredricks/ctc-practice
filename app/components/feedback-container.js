@@ -15,14 +15,15 @@ export function FeedbackContainer() {
       userid: "1234",
       url: pageUrl,
     };
-
-    const response = await fetch("/api/feedback", {
-      method: "post",
-      body: JSON.stringify(body),
-    });
-    const {data} = await response.json();
-    console.log("response", data.message);
-    setMessage(data.message);
+    if (body.message) {
+      const response = await fetch("/api/feedback", {
+        method: "post",
+        body: JSON.stringify(body),
+      });
+      const {data} = await response.json();
+      console.log("response", data.message);
+      setMessage(data.message);
+    }
   };
 
   return (

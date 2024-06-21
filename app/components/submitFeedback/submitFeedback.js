@@ -7,10 +7,14 @@ import FeedbackRating from "../feedbackRating/FeedbackRating";
 const SubmitFeedback = ({ handleFeedback }) => {
   const [rating, setRating] = useState("");
   const [comment, setComment] = useState("");
+  const [error, setError] = useState("");
 
   const submitForm = (e) => {
     e.preventDefault();
     handleFeedback({ rating, comment });
+    if (!comment) {
+      setError("Please enter comment to submit.");
+    }
   };
 
   const setData = (data) => {
@@ -29,6 +33,17 @@ const SubmitFeedback = ({ handleFeedback }) => {
       >
         Submit
       </button>
+        {error && (
+            <div className="usa-alert usa-alert--error" role="alert">
+            <div className="usa-alert__body">
+              <h4 className="usa-alert__heading">Error </h4>
+              <p className="usa-alert__text">
+            
+            {error}
+            </p>
+            </div>
+            </div>
+          )}
     </>
   );
 };
