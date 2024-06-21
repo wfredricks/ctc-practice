@@ -6,39 +6,39 @@ const Comment = () => {
   const [validatedComment, setValidComment] = useState("");
   const [error, setError] = useState("");
 
-  const validateComment = async () => {
-    // Check if the comment is empty
-    if (!comment) {
-      setError("Please enter your feedback.");
-      setComment("");
-      return;
-    }
+  // const validateComment = async () => {
+  //   // Check if the comment is empty
+  //   if (!comment) {
+  //     setError("Please enter your feedback.");
+  //     setComment("");
+  //     return;
+  //   }
 
-    try {
-      const response = await fetch("", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ comment }),
-      });
+  //   try {
+  //     const response = await fetch("", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ comment }),
+  //     });
 
-      if (!response.ok) {
-        throw new Error(`HTTP status ${response.status}`);
-      }
+  //     if (!response.ok) {
+  //       throw new Error(`HTTP status ${response.status}`);
+  //     }
 
-      const data = await response.json();
-      console.log(data);
-      setComment(data.validateComment || "feedback is successfully  submit");
-      setError("");
-    } catch (error) {
-      setError(
-        "Couldn't validate the feedback: " + (error.message || "Unknown error")
-      );
-      setComment("");
-      console.error("Response error:", error);
-    }
-  };
+  //     const data = await response.json();
+  //     console.log(data);
+  //     setComment(data.validateComment || "feedback is successfully  submit");
+  //     setError("");
+  //   } catch (error) {
+  //     setError(
+  //       "Couldn't validate the feedback: " + (error.message || "Unknown error")
+  //     );
+  //     setComment("");
+  //     console.error("Response error:", error);
+  //   }
+  // };
 
   return (
     <>
@@ -56,9 +56,9 @@ const Comment = () => {
             onChange={(e) => setComment(e.target.value.trimStart())}
             placeholder="Enter feedback here"
           ></textarea>
-          <button className="usa-button" onClick={validateComment}>
+          {/* <button className="usa-button" onClick={validateComment}>
             Submit
-          </button>
+          </button> */}
           {validatedComment && (
             <div class="usa-alert usa-alert--success">
               <div class="usa-alert__body">
