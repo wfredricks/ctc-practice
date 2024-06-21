@@ -23,24 +23,16 @@ export function FeedbackContainer() {
 
   return (
     <>
-      <div
-        onClick={() => setShowFeedback(!showFeedback)}
-        style={{
-          position: "fixed",
-          right: "0px",
-          top: "0px",
-          bottom: "0px",
-          maxWidth: "33vw",
-        }}
-      >
-        <div>...</div>
-      </div>
-      {showFeedback && (
-        <>
-          <SubmitFeedback handleFeedback={handleFeedback} />
+      <div onClick={() => setShowFeedback(!showFeedback)} style={{"position":"fixed", "right":"0px", "top":"0px", "bottom":"0px", "maxWidth":"33vw", "display": "flex"}}>
+        <div id="dots" style={{"display":"inline-block", "height":"100%", "background-color": "aquamarine"}}>&#8942;</div>
+        {showFeedback && (
+        <div id="pastComments">
+          <SubmitFeedback />
+          <div>commment</div>
           <div>comments</div>
-        </>
+        </div>
       )}
+      </div>
     </>
   );
 }
