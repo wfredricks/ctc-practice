@@ -21,7 +21,7 @@ export function FeedbackContainer() {
 
     return (
         <div>
-            <SubmitFeedback />
+            <SubmitFeedback rating={rating} comment={message} />
         </div>
     )
 }
