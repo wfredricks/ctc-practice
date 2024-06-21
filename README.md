@@ -2,6 +2,12 @@ This component is designed to support user feedback. It is designed to be portab
 
 
 USAGE:
-use the
+import:
+    import { FeedbackContainer } from '../components/feedback-container'
+tag:
     <FeedbackContainer />
-tag
+commands:
+    to install dependencies:
+    npm i
+    to run program:
+    npm run dev
