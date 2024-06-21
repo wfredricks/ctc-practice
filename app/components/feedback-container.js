@@ -15,7 +15,7 @@ export function FeedbackContainer() {
       url: pageUrl,
     };
 
-    await fetch("/api/feedback", body);
+    await fetch("/api/feedback", {method: 'post', body: JSON.stringify(body)});
   };
 
   handleFeedback({ rating: 5, message: "Great job!" });
