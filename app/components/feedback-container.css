@@ -3,3 +3,9 @@
     display: flex;
     flex-direction: column;
 }
+
+#dots {
+    vertical-align: middle;
+    height: 100%;
+    line-height: 100vh;
+}
