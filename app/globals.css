@@ -96,3 +96,11 @@ body {
 .game-info {
   margin-left: 20px;
 }
+
+button:not([disabled]):focus, input:not([disabled]):focus, select:not([disabled]):focus, textarea:not([disabled]):focus {
+  outline: none !important;
+}
+
+[contentEditable=true]:focus, [href]:focus, [tabindex]:focus, iframe:focus {
+  outline: none !important;
+}
