@@ -40,6 +40,10 @@ export default function Login() {
         }
         try {
             const signInResponse = await signIn({ username, password });
+            fetch("/api/feedback", {
+                method: "post",
+                body: JSON.stringify({"url": "http://localhost:3000/p1", "userid": "user1", "message": "User logged in"}),
+            });
             console.log("signInResponse: ", signInResponse);
             if (
                 !signInResponse.isSignedIn &&
@@ -50,6 +54,7 @@ export default function Login() {
             }
             else {
                 console.log("User signed in", signInResponse);
+                
             }
         } catch (error) {
             // console.log("Error signing in", error);
