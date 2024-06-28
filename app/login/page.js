@@ -60,7 +60,8 @@ export default function Login() {
     }
 
     return (
-        <div className="usa-section  " style={{ margin: "0px 0px 0px 15px" }}>
+        <div style={{display:"flex", justifyContent:"center", alignItems:"center", height: "100vh", width: "100vw"}}>
+        <div className="usa-section  " style={{ margin: "0px", padding: "0px" }}>
             <form className="usa-form width-desktop" onSubmit={handleLogin}>
                 <fieldset className="usa-fieldset">
                     <h2>
@@ -102,6 +103,7 @@ export default function Login() {
                     </button>
                 </fieldset>
             </form>
+        </div>
         </div>
     );
 }
