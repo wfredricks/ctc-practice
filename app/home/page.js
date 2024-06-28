@@ -9,11 +9,15 @@ import { FeedbackContainer } from "../components/feedback-container";
 import LogPost from "../components/log/logPost";
 import { useEffect, useState } from 'react';
 import CommentPost from "../components/comment/commentPost";
+import Logout from "../components/logout/logout";
+
 
 function Home() {
   const [value, setValue] = React.useState("1");
   const [logs, setLogs] = React.useState([]);
   const [comments, setComments] = useState([])
+
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -60,8 +64,10 @@ function Home() {
 
   return (
     <>
+   
       <Box sx={{ width: "100%", typography: "body1", padding: "10px"}}>
         <TabContext value={value}>
+    
           <Box
             sx={{
               borderBottom: 1,
@@ -70,6 +76,7 @@ function Home() {
               alignContent: "center",
             }}
           >
+            
             <TabList onChange={handleChange} aria-label="lab API tabs example">
               <Tab label="LOGS" value="1" />
               <Tab label="COMMENTS" value="2" />
@@ -84,9 +91,14 @@ function Home() {
         <CommentPost comments= {comments}/>
         
           </TabPanel>
+          <div style={{display:"flex",padding:"20px"}} >
+    <Logout/>
+    </div>
         </TabContext>
-      </Box>
+      
 
+      </Box>
+      
       <FeedbackContainer />
     </>
   );
