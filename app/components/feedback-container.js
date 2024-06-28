@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, {useEffect} from "react";
 import SubmitFeedback from "./submitFeedback/submitFeedback";
 import "./feedback-container.css";
 
@@ -25,6 +25,24 @@ export function FeedbackContainer() {
       setMessage(data.message);
     }
   };
+
+  // const handleGetData = async () => {
+  //   const pageUrl = window.location.href;
+
+
+  //   const response = await fetch("/api/getData", {
+  //     method: "post",
+  //     body: pageUrl,
+  //   });
+  //   const { data } = await response.json();
+  //   console.log("response", data.message);
+  //   setMessage(data.message);
+
+  // };
+
+  // useEffect(() => {
+  //   handleGetData();
+  // }, []);
 
   return (
     <div
