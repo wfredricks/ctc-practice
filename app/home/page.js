@@ -6,12 +6,18 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import React from "react";
 import { FeedbackContainer } from "../components/feedback-container";
+import { useRouter } from 'next/navigation';
 
 function Home() {
   const [value, setValue] = React.useState('1');
+  const router = useRouter();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+  };
+
+  const handleLogout = (event, newValue) => {
+    router.push("/");
   };
 
   return (
@@ -31,7 +37,7 @@ function Home() {
 
     
       <FeedbackContainer />
-
+      <button className="usa-button" style={{position:"fixed", bottom: "1rem", left: "1rem"}} onClick={handleLogout}>Logout</button>
     </>
 );
 }
