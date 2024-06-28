@@ -23,7 +23,7 @@ export default function Login() {
 
         // Username validation: for example, check length
         if (username.length < 4) {
-            setError("Wrong Username or password ");
+            setError("Invalid Username or password, please try again.");
             return;
         }
 
@@ -34,7 +34,7 @@ export default function Login() {
             !/[a-zA-Z]/.test(password)
         ) {
             setError(
-                "Wrong Username or password "
+                "Invalid Username or password, please try again."
             );
             return;
         }
