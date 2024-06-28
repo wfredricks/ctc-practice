@@ -2,10 +2,15 @@
     background-color: #DDD;
     display: flex;
     flex-direction: column;
+    padding: 0rem 1rem;
 }
 
 #dots {
     vertical-align: middle;
     height: 100%;
     line-height: 100vh;
+}
+
+.MuiRating-root {
+    margin-bottom: 1rem;
 }
